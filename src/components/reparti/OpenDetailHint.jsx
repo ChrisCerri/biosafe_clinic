@@ -9,7 +9,7 @@ export default function OpenDetailHint() {
       <div>
         <p className="text-sm font-semibold text-foreground">Apri il dettaglio dispositivo</p>
         <p className="mt-0.5 text-sm text-slate-700">
-          Seleziona un dispositivo dall&apos;elenco per vedere parametri, stato e gestione ticket.
+          Seleziona un dispositivo dall&apos;elenco per vedere parametri, stato e azioni consigliate.
         </p>
       </div>
     </div>

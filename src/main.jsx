@@ -7,7 +7,6 @@ import Reparti from "./pages/Reparti"
 import Allarmi from "./pages/Allarmi"
 import Storico from "./pages/Storico"
 import Report from "./pages/Report"
-import Impostazioni from "./pages/Impostazioni"
 import "./index.css"
 
 const router = createBrowserRouter([
@@ -21,7 +20,6 @@ const router = createBrowserRouter([
       { path: "allarmi", element: <Allarmi /> },
       { path: "storico", element: <Storico /> },
       { path: "report", element: <Report /> },
-      { path: "impostazioni", element: <Impostazioni /> },
     ],
   },
 ])

@@ -2,10 +2,7 @@ import { MapPin, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import ParameterReadings from "@/components/dashboard/ParameterReadings"
 import DeviceTiming from "@/components/dashboard/DeviceTiming"
-import TicketActions from "@/components/dashboard/TicketActions"
-import TicketStatusBadge from "@/components/dashboard/TicketStatusBadge"
 import { ALERT_STATUS } from "@/lib/alertEngine"
-import { TICKET_STATUS } from "@/lib/ticketStatus"
 import { cn } from "@/lib/utils"
 
 const borderStyles = {
@@ -14,19 +11,8 @@ const borderStyles = {
   [ALERT_STATUS.OK]: "border-l-emerald-600",
 }
 
-export default function DeviceDetailModal({
-  device,
-  ticketStatus,
-  open,
-  onClose,
-  onTakeCharge,
-  onCloseTicket,
-}) {
+export default function DeviceDetailModal({ device, open, onClose }) {
   if (!open || !device) return null
-
-  const showTickets =
-    device.overallStatus !== ALERT_STATUS.OK &&
-    ticketStatus !== TICKET_STATUS.CLOSED
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -56,7 +42,6 @@ export default function DeviceDetailModal({
                   Priorità {device.priority}
                 </span>
               )}
-              {ticketStatus && <TicketStatusBadge status={ticketStatus} />}
             </div>
             <p className="mt-1 text-sm font-medium text-slate-700">{device.typeLabel}</p>
           </div>
@@ -97,20 +82,14 @@ export default function DeviceDetailModal({
               <span className="font-semibold text-slate-800">Azione consigliata: </span>
               {device.action}
             </p>
-            {device.risk && (
-              <p className="font-medium text-red-900">{device.risk}</p>
+            {device.caseId && (
+              <p>
+                <span className="font-semibold text-slate-800">Caso EDA: </span>
+                {device.caseId} — {device.caseTitle}
+              </p>
             )}
+            {device.risk && <p className="font-medium text-red-900">{device.risk}</p>}
           </div>
-
-          {showTickets && (
-            <div className="border-t border-border pt-4">
-              <TicketActions
-                status={ticketStatus}
-                onTakeCharge={onTakeCharge}
-                onClose={onCloseTicket}
-              />
-            </div>
-          )}
         </div>
       </div>
     </div>

@@ -5,14 +5,11 @@ import {
   FileBarChart,
   History,
   Home,
-  Settings,
   Shield,
-  User,
   X,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { currentUser } from "@/data/currentUser"
 
 const navItems = [
   { to: "/", label: "Home", icon: Home, end: true },
@@ -20,7 +17,6 @@ const navItems = [
   { to: "/allarmi", label: "Allarmi", icon: Bell },
   { to: "/storico", label: "Storico", icon: History },
   { to: "/report", label: "Report", icon: FileBarChart },
-  { to: "/impostazioni", label: "Impostazioni", icon: Settings },
 ]
 
 export default function AppSidebar({ mobileOpen = false, onNavigate, onClose }) {
@@ -76,19 +72,6 @@ export default function AppSidebar({ mobileOpen = false, onNavigate, onClose }) 
           </NavLink>
         ))}
       </nav>
-
-      <div className="shrink-0 border-t border-sidebar-border px-5 py-4">
-        <div className="flex items-center gap-3">
-          <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-white/20">
-            <User className="size-4" aria-hidden="true" />
-          </div>
-          <div className="min-w-0">
-            <p className="truncate text-sm font-semibold">{currentUser.name}</p>
-          </div>
-        </div>
-        <p className="mt-3 text-xs text-white/90">4 laboratori monitorati</p>
-        <p className="mt-1 text-xs font-semibold text-red-200">Stato: CRITICO</p>
-      </div>
     </aside>
   )
 }

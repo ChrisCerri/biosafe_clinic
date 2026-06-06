@@ -15,13 +15,7 @@ function getDepartmentStatus(department) {
   return "ok"
 }
 
-export default function DepartmentSection({
-  department,
-  ticketStates,
-  onTakeCharge,
-  onClose,
-  showTickets = false,
-}) {
+export default function DepartmentSection({ department }) {
   const status = getDepartmentStatus(department)
   const StatusIcon = statusConfig[status].icon
   const alertDevices = department.devices.filter(
@@ -55,14 +49,7 @@ export default function DepartmentSection({
               Avvisi critici e warning
             </h3>
             {alertDevices.map((device) => (
-              <DepartmentDeviceRow
-                key={device.id}
-                device={device}
-                ticketStatus={ticketStates?.[device.id]}
-                onTakeCharge={() => onTakeCharge?.(device.id)}
-                onClose={() => onClose?.(device.id)}
-                showTickets={showTickets}
-              />
+              <DepartmentDeviceRow key={device.id} device={device} />
             ))}
           </div>
         ) : (

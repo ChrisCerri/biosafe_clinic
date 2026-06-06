@@ -1,21 +1,10 @@
 import { MapPin, ShieldAlert } from "lucide-react"
 import DeviceTiming from "@/components/dashboard/DeviceTiming"
 import ParameterReadings from "@/components/dashboard/ParameterReadings"
-import TicketActions from "@/components/dashboard/TicketActions"
-import TicketStatusBadge from "@/components/dashboard/TicketStatusBadge"
-import { TICKET_STATUS } from "@/lib/ticketStatus"
-import { cn } from "@/lib/utils"
 
-export default function DeviceCard({ device, ticketStatus, onTakeCharge, onClose }) {
-  const isClosed = ticketStatus === TICKET_STATUS.CLOSED
-
+export default function DeviceCard({ device }) {
   return (
-    <article
-      className={cn(
-        "rounded-xl border border-border border-l-4 border-l-red-600 bg-white p-4 sm:p-5",
-        isClosed && "opacity-75"
-      )}
-    >
+    <article className="rounded-xl border border-border border-l-4 border-l-red-600 bg-white p-4 sm:p-5">
       <div className="flex items-start gap-3">
         <div className="mt-0.5 rounded-lg bg-red-50 p-2 text-red-700">
           <ShieldAlert className="size-5" aria-hidden="true" />
@@ -29,7 +18,6 @@ export default function DeviceCard({ device, ticketStatus, onTakeCharge, onClose
                 Priorità {device.priority}
               </span>
             )}
-            <TicketStatusBadge status={ticketStatus} />
           </div>
           <p className="mt-1.5 font-semibold text-foreground">{device.problem}</p>
         </div>
@@ -57,10 +45,6 @@ export default function DeviceCard({ device, ticketStatus, onTakeCharge, onClose
           {device.action}
         </p>
         {device.risk && <p className="font-medium text-red-900">{device.risk}</p>}
-      </div>
-
-      <div className="mt-4 border-t border-border pt-4">
-        <TicketActions status={ticketStatus} onTakeCharge={onTakeCharge} onClose={onClose} />
       </div>
     </article>
   )

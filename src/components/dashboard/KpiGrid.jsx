@@ -7,10 +7,10 @@ import {
 import { cn } from "@/lib/utils"
 
 const kpiConfig = [
-  { key: "total", label: "Dispositivi totali", tone: "total", icon: LayoutGrid },
-  { key: "ok", label: "Dispositivi normali", tone: "ok", icon: CheckCircle2 },
-  { key: "warning", label: "Dispositivi warning", tone: "warning", icon: AlertTriangle },
   { key: "critical", label: "Dispositivi critical", tone: "critical", icon: AlertOctagon },
+  { key: "warning", label: "Dispositivi warning", tone: "warning", icon: AlertTriangle },
+  { key: "ok", label: "Dispositivi normali", tone: "ok", icon: CheckCircle2 },
+  { key: "total", label: "Dispositivi totali", tone: "total", icon: LayoutGrid },
 ]
 
 const kpiStyles = {

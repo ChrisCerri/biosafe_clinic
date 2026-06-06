@@ -2,9 +2,6 @@ import { cn } from "@/lib/utils"
 import { ALERT_STATUS } from "@/lib/alertEngine"
 import ParameterReadings from "@/components/dashboard/ParameterReadings"
 import DeviceTiming from "@/components/dashboard/DeviceTiming"
-import TicketActions from "@/components/dashboard/TicketActions"
-import TicketStatusBadge from "@/components/dashboard/TicketStatusBadge"
-import { TICKET_STATUS } from "@/lib/ticketStatus"
 
 const borderStyles = {
   [ALERT_STATUS.CRITICAL]: "border-l-red-600",
@@ -12,22 +9,13 @@ const borderStyles = {
   [ALERT_STATUS.OK]: "border-l-emerald-600",
 }
 
-export default function DepartmentDeviceRow({
-  device,
-  ticketStatus,
-  onTakeCharge,
-  onClose,
-  showTickets = false,
-}) {
-  const isClosed = ticketStatus === TICKET_STATUS.CLOSED
-
+export default function DepartmentDeviceRow({ device }) {
   return (
     <div
       className={cn(
         "rounded-xl border border-border bg-white px-4 py-3",
         borderStyles[device.overallStatus],
-        "border-l-4",
-        isClosed && "opacity-75"
+        "border-l-4"
       )}
     >
       <div className="flex flex-wrap items-center gap-2">
@@ -43,7 +31,6 @@ export default function DepartmentDeviceRow({
             {device.priority}
           </span>
         )}
-        {showTickets && ticketStatus && <TicketStatusBadge status={ticketStatus} />}
       </div>
 
       <p className="mt-1 text-sm font-medium text-foreground">{device.problem}</p>
@@ -66,12 +53,6 @@ export default function DepartmentDeviceRow({
         <span className="font-semibold text-slate-800">Azione consigliata: </span>
         {device.action}
       </p>
-
-      {showTickets && device.overallStatus !== ALERT_STATUS.OK && (
-        <div className="mt-3 border-t border-border pt-3">
-          <TicketActions status={ticketStatus} onTakeCharge={onTakeCharge} onClose={onClose} />
-        </div>
-      )}
     </div>
   )
 }
